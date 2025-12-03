@@ -1,0 +1,5 @@
+{
+  "name": "iiSU Demo Frontend",
+  "description": "A high-fidelity reproduction of the iiSU emulation frontend interface, featuring social networking, game library management, and a shop interface in a modern handheld console style.",
+  "requestFramePermissions": []
+}
