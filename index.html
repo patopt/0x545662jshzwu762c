@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>iiSU Demo</title>
+    <!-- On garde Tailwind en CDN pour simplifier la configuration CSS sur ce projet spécifique -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +14,7 @@
         font-family: 'Quicksand', sans-serif;
         overflow: hidden; /* Prevent scrolling on the body to simulate a console OS */
         user-select: none;
+        background-color: #000;
       }
       /* Custom Scrollbar for internal containers */
       ::-webkit-scrollbar {
@@ -81,9 +83,6 @@
         bottom: -4%;
         z-index: 3;
       }
-
-      /* Wave shape using clip-path - We apply this inline or via utility, 
-         but here we ensure the container respects the clipping */
       
       @keyframes waveAnimation {
         0% {
@@ -96,19 +95,46 @@
           transform: translateX(0);
         }
       }
+      
+      /* Animation Utilities */
+      .animate-in {
+        animation-duration: 0.5s;
+        animation-fill-mode: both;
+      }
+      .fade-in {
+        animation-name: fadeIn;
+      }
+      .zoom-in {
+        animation-name: zoomIn;
+      }
+      .slide-in-from-right-4 {
+        animation-name: slideInRight;
+      }
+      .slide-in-from-bottom-4 {
+        animation-name: slideInBottom;
+      }
+
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+      @keyframes slideInRight { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+      @keyframes slideInBottom { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+    "vite": "https://aistudiocdn.com/vite@^7.2.6",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
+    <!-- C'est ici le changement critique pour Vercel : on charge le fichier TSX comme module -->
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
